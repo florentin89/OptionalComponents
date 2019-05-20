@@ -11,13 +11,13 @@ import UIKit
 class ViewController: UITableViewController {
 
     // Properties
-    var inspectionItems: [Item] = []
+    var items: [Item] = []
     var isRowHidden = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        inspectionItems.append(Item(
+        items.append(Item(
             FirstComponent(firstComponentValue: 0, isVisible: true),
             SecondComponent(secondComponentValue: 0, isVisible: true),
             ThirdComponent(thirdComponentValue: 0, isVisible: true),
@@ -32,7 +32,7 @@ class ViewController: UITableViewController {
             
         // First Component
         case 0:
-            if inspectionItems[indexPath.row].firstComponent?.isVisible == false {
+            if items[indexPath.row].firstComponent?.isVisible == false {
                 print("firstComponent not visible.")
                 self.isRowHidden = true
             }
@@ -45,7 +45,7 @@ class ViewController: UITableViewController {
             
         // Second Component
         case 1:
-            if inspectionItems[indexPath.row].secondComponent?.isVisible == false {
+            if items[indexPath.row].secondComponent?.isVisible == false {
                 print("secondComponent not visible.")
                 self.isRowHidden = true
             }
@@ -58,7 +58,7 @@ class ViewController: UITableViewController {
             
         // Third Component
         case 2:
-            if inspectionItems[indexPath.row].thirdComponent?.isVisible == false {
+            if items[indexPath.row].thirdComponent?.isVisible == false {
                 print("thirdComponent not visible.")
                 self.isRowHidden = true
             }
@@ -71,7 +71,7 @@ class ViewController: UITableViewController {
             
         // Fourth Component
         case 3:
-            if inspectionItems[indexPath.row].fourthComponent?.isVisible == false {
+            if items[indexPath.row].fourthComponent?.isVisible == false {
                 print("fourthComponent not visible.")
                 self.isRowHidden = true
             }
@@ -84,7 +84,7 @@ class ViewController: UITableViewController {
 
         // Fifth Component
         case 4:
-            if inspectionItems[indexPath.row].fifthComponent?.isVisible == false {
+            if items[indexPath.row].fifthComponent?.isVisible == false {
                 print("fifthComponent not visible.")
                 self.isRowHidden = true
             }
@@ -102,7 +102,7 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return inspectionItems.count
+        return items.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
