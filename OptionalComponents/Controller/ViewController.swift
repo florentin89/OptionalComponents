@@ -9,130 +9,98 @@
 import UIKit
 
 class ViewController: UITableViewController {
-
-    // Properties
-    var items: [Item] = []
-    var isRowHidden = false
+    
+    // All components.
+    var inspectionItems: [Component] = [
+        FirstComponent(firstComponentValue: 0, isVisible: true),
+        SecondComponent(secondComponentValue: 0, isVisible: true),
+        ThirdComponent(thirdComponentValue: 0, isVisible: true),
+        FourthComponent(fourthComponentValue: Date(), isVisible: true),
+        FifthComponent(fifthComponentValue: Date(), isVisible: true)
+    ]
+    
+    // Visible components.
+    var visibleItems: [Component] {
+        return self.inspectionItems.filter { $0.isVisible }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        items.append(Item(
-            FirstComponent(firstComponentValue: 0, isVisible: true),
-            SecondComponent(secondComponentValue: 0, isVisible: true),
-            ThirdComponent(thirdComponentValue: 0, isVisible: true),
-            FourthComponent(fourthComponentValue: Date(), isVisible: true),
-            FifthComponent(fifthComponentValue: Date(), isVisible: true))
-        )
+        tableView.tableFooterView = UIView()
     }
-       
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch indexPath.row {
+        if self.visibleItems[indexPath.row] is FirstComponent {
             
-        // First Component
-        case 0:
-            if items[indexPath.row].firstComponent?.isVisible == false {
-                print("firstComponent not visible.")
-                self.isRowHidden = true
-            }
-            else{
-                print("firstComponent is visible.")
-                self.isRowHidden = false
-                let cell = tableView.dequeueReusableCell(withIdentifier: "firstComponentCell", for: indexPath)
-                return cell
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "firstComponentCell", for: indexPath)
+            return cell
             
-        // Second Component
-        case 1:
-            if items[indexPath.row].secondComponent?.isVisible == false {
-                print("secondComponent not visible.")
-                self.isRowHidden = true
-            }
-            else{
-                print("secondComponent is visible.")
-                self.isRowHidden = false
-                let cell = tableView.dequeueReusableCell(withIdentifier: "secondComponentCell", for: indexPath)
-                return cell
-            }
+        } else if self.visibleItems[indexPath.row] is SecondComponent {
             
-        // Third Component
-        case 2:
-            if items[indexPath.row].thirdComponent?.isVisible == false {
-                print("thirdComponent not visible.")
-                self.isRowHidden = true
-            }
-            else{
-                print("thirdComponent is visible.")
-                self.isRowHidden = false
-                let cell = tableView.dequeueReusableCell(withIdentifier: "thirdComponentCell", for: indexPath)
-                return cell
-            }
+            let cell = tableView.dequeueReusableCell(withIdentifier: "secondComponentCell", for: indexPath)
+            return cell
             
-        // Fourth Component
-        case 3:
-            if items[indexPath.row].fourthComponent?.isVisible == false {
-                print("fourthComponent not visible.")
-                self.isRowHidden = true
-            }
-            else{
-                print("fourthComponent is visible.")
-                self.isRowHidden = false
-                let cell = tableView.dequeueReusableCell(withIdentifier: "fourthComponentCell", for: indexPath)
-                return cell
-            }
-
-        // Fifth Component
-        case 4:
-            if items[indexPath.row].fifthComponent?.isVisible == false {
-                print("fifthComponent not visible.")
-                self.isRowHidden = true
-            }
-            else{
-                print("fifthComponent is visible.")
-                self.isRowHidden = false
-                let cell = tableView.dequeueReusableCell(withIdentifier: "fifthComponentCell", for: indexPath)
-                return cell
-            }
-  
-        default:
-            return UITableViewCell()
+        } else if self.visibleItems[indexPath.row] is ThirdComponent {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "thirdComponentCell", for: indexPath)
+            return cell
+            
+        } else if self.visibleItems[indexPath.row] is FourthComponent {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "fourthComponentCell", for: indexPath)
+            return cell
+            
+        } else if self.visibleItems[indexPath.row] is FifthComponent {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "fifthComponentCell", for: indexPath)
+            return cell
         }
+        
         return UITableViewCell()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return self.visibleItems.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        var cellHeight: CGFloat = 0
-        switch indexPath.row {
-            
-        case 0:
-            if isRowHidden{ cellHeight = 0 }
-            else { cellHeight = 100 }
-            return cellHeight
-        case 1:
-            if isRowHidden{ cellHeight = 0 }
-            else { cellHeight = 100 }
-            return cellHeight
-        case 2:
-            if isRowHidden{ cellHeight = 0 }
-            else { cellHeight = 100 }
-            return cellHeight
-        case 3:
-            if isRowHidden{ cellHeight = 0 }
-            else { cellHeight = 200 }
-            return cellHeight
-        case 4:
-            if isRowHidden{ cellHeight = 0 }
-            else { cellHeight = 200 }
-            return cellHeight
-    
-        default:
-            return 200
+        switch self.visibleItems[indexPath.row] {
+        case is FirstComponent: return 100
+        case is SecondComponent: return 100
+        case is ThirdComponent: return 100
+        case is FourthComponent: return 200
+        case is FifthComponent: return 200
+        default: return 200
         }
+    }
+    
+    /// This method is used in iOS = 10.0.
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let actionHide = UITableViewRowAction(style: .destructive, title: "Hide") { action, indexPath in
+            var component = self.visibleItems[indexPath.row]
+            component.isVisible = false
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+        }
+        
+        actionHide.backgroundColor = UIColor.red
+        return [actionHide]
+    }
+    
+    /// This method is used in iOS >= 11.0 instead of `editActionsForRowAt`.
+    @available(iOS 11.0, *)
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let actionHide = UIContextualAction(style: .destructive, title: "Hide") { action, view, handler in
+            var component = self.visibleItems[indexPath.row]
+            component.isVisible = false
+            self.tableView.deleteRows(at: [indexPath], with: .none)
+            handler(true)
+        }
+        
+        actionHide.backgroundColor = UIColor.red
+        return UISwipeActionsConfiguration(actions: [actionHide])
     }
 }

@@ -12,7 +12,7 @@
 		5C1D10B62292DDE7003DA0CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1D10B42292DDE7003DA0CB /* Main.storyboard */; };
 		5C1D10B82292DDE8003DA0CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C1D10B72292DDE8003DA0CB /* Assets.xcassets */; };
 		5C1D10BB2292DDE8003DA0CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1D10B92292DDE8003DA0CB /* LaunchScreen.storyboard */; };
-		5C1D10C62292DE30003DA0CB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D10C52292DE30003DA0CB /* Item.swift */; };
+		5C1D10C62292DE30003DA0CB /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D10C52292DE30003DA0CB /* Component.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +23,7 @@
 		5C1D10B72292DDE8003DA0CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C1D10BA2292DDE8003DA0CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C1D10BC2292DDE8003DA0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C1D10C52292DE30003DA0CB /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		5C1D10C52292DE30003DA0CB /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,7 @@
 		5C1D10C22292DDF9003DA0CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5C1D10C52292DE30003DA0CB /* Item.swift */,
+				5C1D10C52292DE30003DA0CB /* Component.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -156,7 +156,7 @@
 			files = (
 				5C1D10B32292DDE7003DA0CB /* ViewController.swift in Sources */,
 				5C1D10B12292DDE7003DA0CB /* AppDelegate.swift in Sources */,
-				5C1D10C62292DE30003DA0CB /* Item.swift in Sources */,
+				5C1D10C62292DE30003DA0CB /* Component.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +303,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z34A42786E;
 				INFOPLIST_FILE = OptionalComponents/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -321,7 +321,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Z34A42786E;
 				INFOPLIST_FILE = OptionalComponents/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
