@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0ne-db-7ca">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="S7s-ES-60t">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--First VC-->
         <scene sceneID="nek-P0-MAE">
             <objects>
-                <tableViewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0ne-db-7ca" customClass="ViewController" customModule="OptionalComponents" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ViewController" title="First VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0ne-db-7ca" customClass="ViewController" customModule="OptionalComponents" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="06h-nm-LgH" userLabel="Items Table View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="firstComponentCell" rowHeight="100" id="0Re-Gu-OpB" userLabel="FirstComp Cell">
-                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="firstComponentCell" rowHeight="200" id="0Re-Gu-OpB" userLabel="FirstComp Cell" customClass="FirstComponentCell" customModule="OptionalComponents" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Re-Gu-OpB" id="7uv-U8-JXL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Component" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfb-eK-Oh7" userLabel="FirstComp Title Label">
@@ -32,13 +33,16 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exc-F9-Dvx" userLabel="FirstComp Textfield">
-                                            <rect key="frame" x="107" y="42" width="200" height="46"/>
+                                            <rect key="frame" x="107" y="42" width="200" height="146"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="f7e-Zi-Z3r"/>
                                             </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            <connections>
+                                                <action selector="firstComponentTextfieldChanged:" destination="0Re-Gu-OpB" eventType="editingChanged" id="ZPi-0F-Ue7"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>
@@ -50,12 +54,15 @@
                                         <constraint firstItem="mfb-eK-Oh7" firstAttribute="leading" secondItem="7uv-U8-JXL" secondAttribute="leading" id="xja-HC-J4Y"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="firstComponentTextfield" destination="exc-F9-Dvx" id="Pnp-Sl-aH0"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="secondComponentCell" rowHeight="100" id="J60-oM-09q" userLabel="SecondComp Cell">
-                                <rect key="frame" x="0.0" y="128" width="414" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="secondComponentCell" rowHeight="200" id="J60-oM-09q" userLabel="SecondComp Cell" customClass="SecondComponentCell" customModule="OptionalComponents" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="228" width="414" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J60-oM-09q" id="UGW-J9-KxE">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second Component" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cY2-bC-oUo" userLabel="SecondComp Title Label">
@@ -65,10 +72,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="i6U-H7-W9u" userLabel="SecondComp Slider">
-                                            <rect key="frame" x="105" y="34" width="204" height="32.5"/>
+                                            <rect key="frame" x="105" y="34" width="204" height="132.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="4H2-lN-JSl"/>
                                             </constraints>
+                                            <connections>
+                                                <action selector="secondComponentSliderValueChanged:" destination="J60-oM-09q" eventType="valueChanged" id="5Ii-pq-vYE"/>
+                                            </connections>
                                         </slider>
                                     </subviews>
                                     <constraints>
@@ -80,12 +90,15 @@
                                         <constraint firstItem="i6U-H7-W9u" firstAttribute="top" secondItem="cY2-bC-oUo" secondAttribute="bottom" id="qnx-P4-qdw"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="secondComponentSlider" destination="i6U-H7-W9u" id="DdL-Cv-G1L"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="thirdComponentCell" rowHeight="100" id="7oU-rK-iF9" userLabel="ThirdComp Cell">
-                                <rect key="frame" x="0.0" y="228" width="414" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="thirdComponentCell" rowHeight="200" id="7oU-rK-iF9" userLabel="ThirdComp Cell" customClass="ThirdComponentCell" customModule="OptionalComponents" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="428" width="414" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7oU-rK-iF9" id="kYf-yf-Gvu">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third Component" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Af4-4Z-FDt" userLabel="ThirdComp Title Label">
@@ -95,10 +108,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="dOv-Dv-XyN" userLabel="ThirdComp Slider">
-                                            <rect key="frame" x="105" y="34" width="204" height="32.5"/>
+                                            <rect key="frame" x="105" y="34" width="204" height="132.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="vyR-Ur-EwY"/>
                                             </constraints>
+                                            <connections>
+                                                <action selector="thirdComponentSliderValueChanged:" destination="7oU-rK-iF9" eventType="valueChanged" id="7Ny-EX-7yN"/>
+                                            </connections>
                                         </slider>
                                     </subviews>
                                     <constraints>
@@ -110,22 +126,25 @@
                                         <constraint firstAttribute="trailing" secondItem="Af4-4Z-FDt" secondAttribute="trailing" id="zkv-dM-Lpv"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="thirdComponentSlider" destination="dOv-Dv-XyN" id="T4o-O5-CXG"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="fourthComponentCell" rowHeight="200" id="nVX-uW-uKP" userLabel="FourthComp Cell">
-                                <rect key="frame" x="0.0" y="328" width="414" height="200"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="fourthComponentCell" rowHeight="250" id="nVX-uW-uKP" userLabel="FourthComp Cell" customClass="FourthComponentCell" customModule="OptionalComponents" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="628" width="414" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nVX-uW-uKP" id="4ym-tE-vC3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fourth Component" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTT-hB-WeJ" userLabel="FourthComp Title Label">
-                                            <rect key="frame" x="0.0" y="10" width="414" height="25.5"/>
+                                            <rect key="frame" x="0.0" y="10" width="414" height="75.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="2cG-jV-7sq" userLabel="FourthComp Date Picker">
-                                            <rect key="frame" x="82" y="43.5" width="250" height="150"/>
+                                            <rect key="frame" x="82" y="93.5" width="250" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="2Vz-wN-Rps"/>
                                                 <constraint firstAttribute="width" constant="250" id="TPA-2x-T2c"/>
@@ -134,6 +153,9 @@
                                                 <!--2019-03-19 15:19:21 +0000-->
                                             </date>
                                             <locale key="locale" localeIdentifier="en_GB"/>
+                                            <connections>
+                                                <action selector="fourthComponentDatePickerValueChanged:" destination="nVX-uW-uKP" eventType="valueChanged" id="Fkw-1q-pb6"/>
+                                            </connections>
                                         </datePicker>
                                     </subviews>
                                     <constraints>
@@ -145,22 +167,25 @@
                                         <constraint firstItem="2cG-jV-7sq" firstAttribute="top" secondItem="RTT-hB-WeJ" secondAttribute="bottom" constant="8" symbolic="YES" id="wMF-ag-k06"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="fourthComponentDatePicker" destination="2cG-jV-7sq" id="Gv6-NM-wUx"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="fifthComponentCell" rowHeight="200" id="VaI-D3-Kgp" userLabel="FifthComp Cell">
-                                <rect key="frame" x="0.0" y="528" width="414" height="200"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="fifthComponentCell" rowHeight="200" id="VaI-D3-Kgp" userLabel="FifthComp Cell" customClass="FifthComponentCell" customModule="OptionalComponents" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="878" width="414" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VaI-D3-Kgp" id="HHR-zl-59H">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="199.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fifth Component" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkS-3q-8u4" userLabel="FifthComp Title Label">
-                                            <rect key="frame" x="0.0" y="10" width="414" height="30"/>
+                                            <rect key="frame" x="0.0" y="10" width="414" height="32.5"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cXm-oi-haR" userLabel="FifthComp Date Picker">
-                                            <rect key="frame" x="82" y="48" width="250" height="147"/>
+                                            <rect key="frame" x="82" y="50.5" width="250" height="147"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="250" id="k7H-jH-Nh3"/>
                                                 <constraint firstAttribute="height" constant="147" id="wk0-YE-H51"/>
@@ -169,6 +194,9 @@
                                                 <!--2019-03-19 15:19:21 +0000-->
                                             </date>
                                             <locale key="locale" localeIdentifier="en_GB"/>
+                                            <connections>
+                                                <action selector="fifthComponentDatePickerValueChanged:" destination="VaI-D3-Kgp" eventType="valueChanged" id="xh0-jt-4be"/>
+                                            </connections>
                                         </datePicker>
                                     </subviews>
                                     <constraints>
@@ -180,6 +208,9 @@
                                         <constraint firstItem="cXm-oi-haR" firstAttribute="centerX" secondItem="HHR-zl-59H" secondAttribute="centerX" id="xlW-Cd-gFx"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="fifthComponentDatePicker" destination="cXm-oi-haR" id="t9q-nl-VLh"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -189,10 +220,53 @@
                             <outlet property="prefetchDataSource" destination="0ne-db-7ca" id="QYk-j3-L60"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="d5f-Fr-BhN">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="XXh-A6-M0W">
+                            <connections>
+                                <action selector="nextBtnTapped:" destination="0ne-db-7ca" id="zGh-mP-HVH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="kTg-xG-VQu" kind="show" identifier="goSecondVC" id="uZ3-Y4-4Qe"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xuc-PP-cTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="548" y="132"/>
+            <point key="canvasLocation" x="1457.9710144927537" y="131.91964285714286"/>
+        </scene>
+        <!--Second VC-->
+        <scene sceneID="53Y-aC-rGv">
+            <objects>
+                <viewController storyboardIdentifier="SecondVC" title="Second VC" id="kTg-xG-VQu" customClass="SecondVC" customModule="OptionalComponents" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qjm-uR-ChG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dc2-nF-OiS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HiD-Ru-4dE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2313" y="132"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oWt-Yn-6na">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="S7s-ES-60t" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="whq-dg-Ovy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0ne-db-7ca" kind="relationship" relationship="rootViewController" id="MAF-LM-xox"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OIZ-Kn-FVH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="547.82608695652175" y="131.91964285714286"/>
         </scene>
     </scenes>
 </document>

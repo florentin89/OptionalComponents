@@ -12,10 +12,10 @@ protocol Component {
 
 class FirstComponent: Component {
     
-    var firstComponentValue: Int
+    var firstComponentValue: String
     var isVisible: Bool
     
-    init(firstComponentValue: Int, isVisible: Bool) {
+    init(firstComponentValue: String, isVisible: Bool) {
         self.firstComponentValue = firstComponentValue
         self.isVisible = isVisible
     }
