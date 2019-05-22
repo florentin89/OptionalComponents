@@ -12,55 +12,55 @@ protocol Component {
 
 class FirstComponent: Component {
     
-    var firstComponentValue: String
+    var value: String
     var isVisible: Bool
     
-    init(firstComponentValue: String, isVisible: Bool) {
-        self.firstComponentValue = firstComponentValue
+    init(value: String, isVisible: Bool) {
+        self.value = value
         self.isVisible = isVisible
     }
 }
 
 class SecondComponent: Component {
     
-    var secondComponentValue: Int
+    var value: Int
     var isVisible: Bool
     
-    init(secondComponentValue: Int, isVisible: Bool) {
-        self.secondComponentValue = secondComponentValue
+    init(value: Int, isVisible: Bool) {
+        self.value = value
         self.isVisible = isVisible
     }
 }
 
 class ThirdComponent: Component {
     
-    var thirdComponentValue: Int
+    var value: Int
     var isVisible: Bool
     
-    init(thirdComponentValue: Int, isVisible: Bool) {
-        self.thirdComponentValue = thirdComponentValue
+    init(value: Int, isVisible: Bool) {
+        self.value = value
         self.isVisible = isVisible
     }
 }
 
 class FourthComponent: Component {
     
-    var fourthComponentValue: Date
+    var value: Date
     var isVisible: Bool
     
-    init(fourthComponentValue: Date, isVisible: Bool) {
-        self.fourthComponentValue = fourthComponentValue
+    init(value: Date, isVisible: Bool) {
+        self.value = value
         self.isVisible = isVisible
     }
 }
 
 class FifthComponent: Component {
     
-    var fifthComponentValue: Date
+    var value: Date
     var isVisible: Bool
     
-    init(fifthComponentValue: Date, isVisible: Bool) {
-        self.fifthComponentValue = fifthComponentValue
+    init(value: Date, isVisible: Bool) {
+        self.value = value
         self.isVisible = isVisible
     }
 }

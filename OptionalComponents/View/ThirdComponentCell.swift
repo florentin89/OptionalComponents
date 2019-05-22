@@ -9,27 +9,25 @@
 import UIKit
 
 protocol ThirdComponentCellDelegate {
-    func thirdComponentSliderChanged(thirdComponent: UISlider)
+    func thirdComponentSliderChanged(cell: ThirdComponentCell, thirdComponent slider: UISlider)
 }
 
 class ThirdComponentCell: UITableViewCell {
 
     @IBOutlet weak var thirdComponentSlider: UISlider!
+    @IBOutlet weak var thirdComponentLabel: UILabel!
     
     var delegate: ThirdComponentCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     @IBAction func thirdComponentSliderValueChanged(_ sender: UISlider) {
-        delegate?.thirdComponentSliderChanged(thirdComponent: thirdComponentSlider)
+        delegate?.thirdComponentSliderChanged(cell: self, thirdComponent: thirdComponentSlider)
     }
 }

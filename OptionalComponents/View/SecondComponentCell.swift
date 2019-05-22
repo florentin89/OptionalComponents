@@ -9,28 +9,24 @@
 import UIKit
 
 protocol SecondComponentCellDelegate {
-    func secondComponentSliderChanged(secondComponent: UISlider)
+    func secondComponentSliderChanged(cell: SecondComponentCell, secondComponent slider: UISlider)
 }
 
 class SecondComponentCell: UITableViewCell {
 
     @IBOutlet weak var secondComponentSlider: UISlider!
+    @IBOutlet weak var secondComponentLabel: UILabel!
     
     var delegate: SecondComponentCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     @IBAction func secondComponentSliderValueChanged(_ sender: UISlider) {
-    
-        delegate?.secondComponentSliderChanged(secondComponent: secondComponentSlider)
+        delegate?.secondComponentSliderChanged(cell: self, secondComponent: secondComponentSlider)
     }
-    
 }

@@ -10,20 +10,13 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    var firstComponentValue = ""
-    var secondComponentValue = 0
-    var thirdComponentValue = 0
-    var fourthComponentValue = Date()
-    var fifthComponentValue = Date()
-    var indexPath: [IndexPath] = []
-    
     // All components.
     var components: [Component] = [
-        FirstComponent(firstComponentValue: "", isVisible: true),
-        SecondComponent(secondComponentValue: 0, isVisible: true),
-        ThirdComponent(thirdComponentValue: 0, isVisible: true),
-        FourthComponent(fourthComponentValue: Date(), isVisible: true),
-        FifthComponent(fifthComponentValue: Date(), isVisible: true)
+        FirstComponent(value: "", isVisible: true),
+        SecondComponent(value: 0, isVisible: true),
+        ThirdComponent(value: 0, isVisible: true),
+        FourthComponent(value: Date(), isVisible: true),
+        FifthComponent(value: Date(), isVisible: true)
     ]
     
     // Visible components.
@@ -33,77 +26,61 @@ class ViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
-        
-        indexPath = tableView.visibleCells
-            .compactMap { tableView.indexPath(for: $0) }
-            .filter { $0.section == 0 }
+        self.tableView.tableFooterView = UIView()
+        self.title = "First View Ctrl"
     }
     
     @IBAction func nextBtnTapped(_ sender: UIBarButtonItem) {
-    
-        components = [
-            FirstComponent(firstComponentValue: firstComponentValue, isVisible: true),
-            SecondComponent(secondComponentValue: secondComponentValue, isVisible: true),
-            ThirdComponent(thirdComponentValue: thirdComponentValue, isVisible: true),
-            FourthComponent(fourthComponentValue: fourthComponentValue, isVisible: true),
-            FifthComponent(fifthComponentValue: fifthComponentValue, isVisible: true)
-        ]
         
-        print("******** SAVED DATA ********")
-
-        if let firstComponent = self.components[indexPath[0].row] as? FirstComponent {
-            print("First Component Value: \(firstComponent.firstComponentValue)\n" )
-        }
-        if let secondComponent = self.components[indexPath[1].row] as? SecondComponent {
-            print("Second Component Value: \(secondComponent.secondComponentValue)\n" )
-        }
-        if let thirdComponent = self.components[indexPath[2].row] as? ThirdComponent {
-            print("Third Component Value: \(thirdComponent.thirdComponentValue)\n" )
-        }
-        if let fourthComponent = self.components[indexPath[3].row] as? FourthComponent {
-            print("Fourth Component Value: \(fourthComponent.fourthComponentValue)\n" )
-        }
-        if let fifthComponent = self.components[indexPath[4].row] as? FifthComponent {
-            print("Fifth Component Value: \(fifthComponent.fifthComponentValue)\n" )
-        }
-
+        print("\n\n------- PASSED VALUES --------")
+        self.visibleComponents.printDebugDescription()
+        
         let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondVC") as! SecondVC
-        
+        secondVC.visibleComponents = visibleComponents
+
         self.navigationController?.pushViewController(secondVC, animated: true)
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if self.visibleComponents[indexPath.row] is FirstComponent {
+        if let component = self.visibleComponents[indexPath.row] as? FirstComponent {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "firstComponentCell", for: indexPath) as! FirstComponentCell
             cell.delegate = self
+            cell.firstComponentTextfield.text = component.value
+            cell.firstComponentTextfield.tag = indexPath.row
             return cell
             
-        } else if self.visibleComponents[indexPath.row] is SecondComponent {
+        } else if let component = self.visibleComponents[indexPath.row] as? SecondComponent {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "secondComponentCell", for: indexPath) as! SecondComponentCell
             cell.delegate = self
+            cell.secondComponentSlider.value = Float(component.value)
+            cell.secondComponentSlider.tag = indexPath.row
             return cell
             
-        } else if self.visibleComponents[indexPath.row] is ThirdComponent {
+        } else if let component = self.visibleComponents[indexPath.row] as? ThirdComponent {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "thirdComponentCell", for: indexPath) as! ThirdComponentCell
             cell.delegate = self
+            cell.thirdComponentSlider.value = Float(component.value)
+            cell.thirdComponentSlider.tag = indexPath.row
             return cell
             
-        } else if self.visibleComponents[indexPath.row] is FourthComponent {
+        } else if let component = self.visibleComponents[indexPath.row] as? FourthComponent {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "fourthComponentCell", for: indexPath) as! FourthComponentCell
             cell.delegate = self
+            cell.fourthComponentDatePicker.date = component.value
+            cell.fourthComponentDatePicker.tag = indexPath.row
             return cell
             
-        } else if self.visibleComponents[indexPath.row] is FifthComponent {
+        } else if let component = self.visibleComponents[indexPath.row] as? FifthComponent {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "fifthComponentCell", for: indexPath) as! FifthComponentCell
             cell.delegate = self
+            cell.fifthComponentDatePicker.date = component.value
+            cell.fifthComponentDatePicker.tag = indexPath.row
             return cell
         }
         
@@ -155,33 +132,67 @@ class ViewController: UITableViewController {
     }
 }
 
+extension Array {
+    func printDebugDescription() {
+        for component in self {
+            if let component = component as? FirstComponent {
+                print("FirstComponent, isVisible = \(component.isVisible), value = \(component.value)")
+            } else if let component = component as? SecondComponent {
+                print("SecondComponent, isVisible = \(component.isVisible), value = \(component.value)")
+            } else if let component = component as? ThirdComponent {
+                print("ThirdComponent, isVisible = \(component.isVisible), value = \(component.value)")
+            } else if let component = component as? FourthComponent {
+                print("FourthComponent, isVisible = \(component.isVisible), value = \(component.value)")
+            } else if let component = component as? FifthComponent {
+                print("FifthComponent, isVisible = \(component.isVisible), value = \(component.value)")
+            } else if let component = component as? Component {
+                print("unknown component, isVisible = \(component.isVisible)")
+            } else {
+                print("unknown")
+            }
+        }
+    }
+}
+
 extension ViewController: FirstComponentCellDelegate{
-    func firstComponentTextfieldChanged(firstComponent: UITextField) {
+    func firstComponentTextfieldChanged(cell: FirstComponentCell, firstComponent textfield: UITextField) {
         
-        firstComponentValue = firstComponent.text!
+        let component = self.visibleComponents[textfield.tag] as! FirstComponent
+        component.value = textfield.text ?? String()
     }
 }
 
 extension ViewController: SecondComponentCellDelegate{
-    func secondComponentSliderChanged(secondComponent: UISlider) {
-        secondComponentValue = Int(secondComponent.value)
+    
+    func secondComponentSliderChanged(cell: SecondComponentCell, secondComponent slider: UISlider) {
+        
+        let component = self.visibleComponents[slider.tag] as! SecondComponent
+        component.value = Int(slider.value) - Int(slider.value) % 10
+        cell.secondComponentLabel.text = "\(component.value) %"
     }
 }
 
 extension ViewController: ThirdComponentCellDelegate{
-    func thirdComponentSliderChanged(thirdComponent: UISlider) {
-        thirdComponentValue = Int(thirdComponent.value)
+    func thirdComponentSliderChanged(cell: ThirdComponentCell, thirdComponent slider: UISlider) {
+        
+        let component = self.visibleComponents[slider.tag] as! ThirdComponent
+        component.value = Int(slider.value) - Int(slider.value) % 10
+        cell.thirdComponentLabel.text = "\(component.value) %"
     }
 }
 
 extension ViewController: FourthComponentCellDelegate{
-    func fourthComponentDateChanged(fourthComponent: UIDatePicker) {
-        fourthComponentValue = fourthComponent.date
+    func fourthComponentDateChanged(cell: FourthComponentCell, fourthComponent date: UIDatePicker) {
+        
+        let component = self.visibleComponents[date.tag] as! FourthComponent
+        component.value = date.date
     }
 }
 
 extension ViewController: FifthComponentCellDelegate{
-    func fifthComponentDateChanged(fifthComponent: UIDatePicker) {
-        fifthComponentValue = fifthComponent.date
+    func fifthComponentDateChanged(cell: FifthComponentCell, fifthComponent date: UIDatePicker) {
+        
+        let component = self.visibleComponents[date.tag] as! FifthComponent
+        component.value = date.date
     }
 }

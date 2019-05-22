@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FourthComponentCellDelegate {
-    func fourthComponentDateChanged(fourthComponent: UIDatePicker)
+    func fourthComponentDateChanged(cell: FourthComponentCell, fourthComponent date: UIDatePicker)
 }
 
 class FourthComponentCell: UITableViewCell {
@@ -20,17 +20,13 @@ class FourthComponentCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     @IBAction func fourthComponentDatePickerValueChanged(_ sender: UIDatePicker) {
-        
-        delegate?.fourthComponentDateChanged(fourthComponent: fourthComponentDatePicker)
+        delegate?.fourthComponentDateChanged(cell: self, fourthComponent: fourthComponentDatePicker)
     }
 }

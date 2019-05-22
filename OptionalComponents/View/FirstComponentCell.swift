@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FirstComponentCellDelegate {
-    func firstComponentTextfieldChanged(firstComponent: UITextField)
+    func firstComponentTextfieldChanged(cell: FirstComponentCell, firstComponent textfield: UITextField)
 }
 
 class FirstComponentCell: UITableViewCell {
@@ -25,9 +25,8 @@ class FirstComponentCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
     
     @IBAction func firstComponentTextfieldChanged(_ sender: UITextField) {
-        delegate?.firstComponentTextfieldChanged(firstComponent: firstComponentTextfield)
+        delegate?.firstComponentTextfieldChanged(cell: self, firstComponent: firstComponentTextfield)
     }
 }
