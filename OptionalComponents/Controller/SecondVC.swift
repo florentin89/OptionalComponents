@@ -13,6 +13,7 @@ class SecondVC: UIViewController {
     @IBOutlet weak var detailsTableView: UITableView!
     
     var receivedObject: ObjectModel!
+    var valuesReceived: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,11 @@ class SecondVC: UIViewController {
         detailsTableView.tableFooterView = UIView()
         
         print("\nReceived comment: \(receivedObject.comment)")
+        
+        print("\n\n------ Received DATA ------")
+        self.receivedObject?.components.printDebugDescription()
+        
+        print("Values received: \(valuesReceived)")
     }
 }
 
@@ -34,6 +40,10 @@ extension SecondVC: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     // Set the header of each section
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
@@ -45,44 +55,47 @@ extension SecondVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "detailsCell", for: indexPath)
-        
-        print("\n\n------ Received DATA ------")
-        self.receivedObject?.components.printDebugDescription()
-        
+
+     
         switch indexPath.section {
         case 0:
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "componentsCell", for: indexPath)
             
             for component in receivedObject.components{
                 if let component = component as? FirstComponent {
                     print("FirstComponent, isVisible = \(component.isVisible), value = \(component.value)")
                     if component.isVisible{
-                        cell.textLabel?.text = "First component value: \(component.value)"
+                        //cell.textLabel?.text = "First component value: \(component.value)"
+                        valuesReceived.append(component.value)
                     }
                 }
                 else if let component = component as? SecondComponent {
                     print("SecondComponent, isVisible = \(component.isVisible), value = \(component.value)")
                     if component.isVisible{
-                        cell.textLabel?.text = "Second component value: \(component.value)%"
+                        //cell.textLabel?.text = "Second component value: \(component.value)%"
+                        valuesReceived.append(String(component.value))
                     }
                 }
                 else if let component = component as? ThirdComponent {
                     print("ThirdComponent, isVisible = \(component.isVisible), value = \(component.value)")
                     if component.isVisible{
-                        cell.textLabel?.text = "Third component value: \(component.value)%"
+                        //cell.textLabel?.text = "Third component value: \(component.value)%"
+                        valuesReceived.append(String(component.value))
                     }
                 }
                 else if let component = component as? FourthComponent {
                     print("FourthComponent, isVisible = \(component.isVisible), value = \(component.value)")
                     if component.isVisible{
-                        cell.textLabel?.text = "Fourth component value: \(component.value.toString("dd/MM/yyyy HH:mm"))"
+                        //cell.textLabel?.text = "Fourth component value: \(component.value.toString("dd/MM/yyyy HH:mm"))"
+                        valuesReceived.append(component.value.toString("dd/MM/yyyy HH:mm"))
                     }
                 }
                 else if let component = component as? FifthComponent {
                     print("FifthComponent, isVisible = \(component.isVisible), value = \(component.value)")
                     if component.isVisible{
-                        cell.textLabel?.text = "Fifth component value: \(component.value.toString("dd/MM/yyyy HH:mm"))"
+                        //cell.textLabel?.text = "Fifth component value: \(component.value.toString("dd/MM/yyyy HH:mm"))"
+                        valuesReceived.append(component.value.toString("dd/MM/yyyy HH:mm"))
                     }
                 }
                 else {
@@ -90,9 +103,17 @@ extension SecondVC: UITableViewDataSource, UITableViewDelegate {
                 }
             }
             
-            return cell
+            for eachComponent in valuesReceived {
+                cell.textLabel?.text = eachComponent
+                return cell
+            }
+            
+            return UITableViewCell()
             
         case 1:
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath)
+            
             cell.textLabel?.text = "Comment received: \(receivedObject.comment)"
             return cell
             
