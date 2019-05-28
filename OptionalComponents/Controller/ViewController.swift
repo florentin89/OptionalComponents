@@ -12,7 +12,7 @@ class ViewController: UITableViewController {
     
     // All components.
     var components: [Component] = [
-        FirstComponent(value: "", isVisible: true),
+        FirstComponent(value: String(), isVisible: true),
         SecondComponent(value: 0, isVisible: true),
         ThirdComponent(value: 0, isVisible: true),
         FourthComponent(value: Date(), isVisible: true),
@@ -23,6 +23,8 @@ class ViewController: UITableViewController {
     var visibleComponents: [Component] {
         return self.components.filter { $0.isVisible }
     }
+    
+    var objectToSent: ObjectModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,10 @@ class ViewController: UITableViewController {
         self.visibleComponents.printDebugDescription()
         
         let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "SecondVC") as! SecondVC
-        secondVC.visibleComponents = visibleComponents
+        
+        self.objectToSent = ObjectModel(comment: "Swift 5 FTW", components: visibleComponents)
+        
+        secondVC.receivedObject = self.objectToSent
 
         self.navigationController?.pushViewController(secondVC, animated: true)
     }
